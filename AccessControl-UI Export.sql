@@ -1,10 +1,10 @@
 use cxdb;
 
 select 
-	concat( FirstName, ' ', LastName ), username, 
+	concat( FirstName, ' ', LastName ) as 'Full name', username, 
 	(select name from accesscontrol.AuthenticationProviders where id= AuthenticationProviderId) as 'Authentication Provider', 
 	email, 
-	(select substring( ( select ', ' + name
+	(select substring( ( select ', ' + fullname
 	from accesscontrol.teams 
 	left join accesscontrol.TeamMembers on teamid = accesscontrol.teams.id 
 	where accesscontrol.TeamMembers.userid = accesscontrol.AspNetUsers.id 
