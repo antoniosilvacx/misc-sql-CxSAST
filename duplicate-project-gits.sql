@@ -9,7 +9,7 @@ from
 		select id, name, substring( path, first, last-first ) as path, charindex( '/', substring( path, first, last-first ) ) as realfirst, last-first as length
 		from
 		(
-			select id, name, path, patindex( '%.wdf.sap.corp%', path) as first, patindex( '%</Url>%', path) as last from projects
+			select id, name, path, patindex( '%.corp.domain%', path) as first, patindex( '%</Url>%', path) as last from projects
 			where 
 			is_deprecated = 0
 			and path like '%git%'
